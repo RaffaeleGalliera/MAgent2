@@ -1,8 +1,18 @@
 # Package ######################################################################
 
 [build-system]
-requires = ["setuptools >= 61.0.0", "cmake"]
-build-backend = "setuptools.build_meta"
+requires = [
+    "scikit-build-core>=0.7",
+    "pybind11",                 # header-only, satisfies CMake find_package
+    "numpy",                    # headers needed at build time
+]
+build-backend = "scikit_build_core.build"
+
+[tool.scikit-build]
+wheel.packages = ["magent2"]
+
+[tool.scikit-build.editable]
+mode = "inplace"        # or "redirect" (default); both work fine
 
 [project]
 name = "magent2"
